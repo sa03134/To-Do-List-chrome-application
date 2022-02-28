@@ -1,23 +1,17 @@
-const calculator = {
-  add: function (a, b) {
-    return a + b;
-  },
-  minus: function (a, b) {
-    return a - b;
-  },
-  multiply: function (a, b) {
-    return a * b;
-  },
-  divide: function (a, b) {
-    return a / b + (a % b);
-  },
-  powerof: function (a, b) {
-    return a ** b;
-  },
-};
+const title = document.querySelector(".hello h1");
 
-console.log(calculator.add(10, 3));
-console.log(calculator.minus(10, 3));
-console.log(calculator.multiply(10, 3));
-console.log(calculator.divide(10, 3));
-console.log(calculator.powerof(10, 3));
+// function handleTitleClick() {
+//   console.log("Title was clicked");
+// }
+
+function handleMouseEnter() {
+  title.style.color = "blue";
+}
+
+function handleMouseLeave() {
+  title.style.color = "black";
+}
+
+// title.addEventListener("click", handleTitleClick);
+title.addEventListener("mouseenter", handleMouseEnter);
+title.addEventListener("mouseleave", handleMouseLeave);
