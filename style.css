@@ -1,16 +1,14 @@
-body {
-  background-color: beige;
+.trick {
+  cursor: none;
 }
 
-h1 {
-  color: cornflowerblue;
-  transition: color 0.5s ease-in-out;
+.display {
+  display: none;
 }
-
-.clicked {
-  color: tomato;
-}
-
-.sexy-font {
-  font-style: italic;
+.size {
+  width: 2%;
+  height: 2%;
+  position: absolute;
+  left: 300px;
+  top: 300px;
 }
