@@ -1,40 +1,23 @@
 const loginForm = document.querySelector("#login-form");
 const loginInput = document.querySelector("#login-form input");
 
-function handleLink(event) {
-  event.preventDefault();
-  console.dir(event);
+const greeting = document.querySelector("#greeting");
 
-  // document.body.classList.add("trick");
-  // document.body.style.cursor = "none";
+const HIDDEN_CLASSNAME = "hidden";
+
+if (localStorage.getItem("username")) {
+  loginForm.classList.add(HIDDEN_CLASSNAME);
 }
 
-const linkAnchor = document.querySelector("a");
-linkAnchor.addEventListener("click", handleLink);
+function handleSubmit(event) {
+  const username = loginInput.value;
+  event.preventDefault();
+  loginForm.classList.add(HIDDEN_CLASSNAME);
 
-const fakeCursor = document.querySelector("img");
+  greeting.innerText = `HELLO! ${username}`;
+  greeting.classList.remove(HIDDEN_CLASSNAME);
 
-document.addEventListener("click", function (event) {
-  document.body.requestPointerLock();
-  fakeCursor.classList.toggle("display");
-});
-document.addEventListener("mousemove", function (event) {
-  console.log(event);
-  // console.log(String(event.x));
+  localStorage.setItem("username", username);
+}
 
-  let xValue = fakeCursor.style.left;
-  xValue.replace("px", "");
-  console.log(xValue);
-  // fakeCursor.style.left += String(event.movementX) + "px";
-  // fakeCursor.style.top += String(event.clientY) + "px";
-
-  // console.log(fakeCursor.style.left);
-  // console.log(fakeCursor.style.top);
-  // console.log(event.movementX);
-  // console.log(event.movementY);
-});
-
-document.body.addEventListener("pointerlockchange", function (event) {
-  if (document.pointerLockElement === document.body) {
-  }
-});
+loginForm.addEventListener("submit", handleSubmit);
