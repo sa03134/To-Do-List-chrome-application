@@ -1,14 +1,47 @@
 const todoForm = document.querySelector("#todo-form");
-const input = document.querySelector("#todo-form input");
-
+const toDoInput = todoForm.querySelector("#todo-form input");
 const todoList = document.querySelector("#todo-list");
 
-function handleSubmit(event) {
-  event.preventDefault();
-  const todoItem = document.createElement("li");
-  const inputValue = input.value;
-  todoItem.innerText = inputValue;
-  todoList.appendChild(todoItem);
+const toDos = [];
+
+function saveToDos() {
+  localStorage.setItem("todos", toDos);
 }
 
-todoForm.addEventListener("submit", handleSubmit);
+function deleteToDo(event) {
+  const li = event.target.parentNode;
+  li.remove();
+}
+
+function paintToDo(newTodo) {
+  const li = document.createElement("li");
+  const span = document.createElement("span");
+  span.innerText = newTodo;
+  const button = document.createElement("button");
+  li.appendChild(span);
+  li.appendChild(button);
+  button.addEventListener("click", deleteToDo);
+  button.innerText = "X?";
+  todoList.appendChild(li);
+
+  // todoList.querySelector("li").appendChild(span);
+  // localStorage.setItem("todo", newTodo);
+}
+
+function handleToDoSubmit(event) {
+  event.preventDefault();
+  const newTodo = toDoInput.value;
+  toDoInput.value = "";
+  toDos.push(newTodo);
+  paintToDo(newTodo);
+  saveToDos();
+}
+
+if (localStorage.getItem("todo") === null) {
+  // 상관없음
+} else {
+  // 불러와 줘야함.
+  // for()
+}
+
+todoForm.addEventListener("submit", handleToDoSubmit);
