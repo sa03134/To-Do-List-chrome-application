@@ -19,9 +19,8 @@ function checkItem(event) {}
 
 function deleteToDo(event) {
   const li = event.target.parentNode;
-  const id = li.id;
-  toDos = toDos.filter((item) => {
-    return JSON.stringify(item.id) !== id;
+  toDos = toDos.filter((toDo) => {
+    return toDo.id !== parseInt(li.id);
   });
   saveToDos();
   console.log(toDos);
